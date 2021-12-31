@@ -133,11 +133,12 @@ async function postDailyReportFormData(
     await sleep(randomBetween(1000, 2000));
 
     console.log("正在提交今日疫情填报信息");
+    
+    printMan(formData);
 
     const reportReponse = await postDailyReportFormData(client, formData);
 
     console.log(`今日填报结果：${reportReponse.m}`);
-        printMan(formData);
 
 
     const chatId = process.env["TG_CHAT_ID"];

@@ -30,6 +30,18 @@ async function login(
 
     return client;
 }
+function printMan(dr:DailyReportForm){
+        console.log("正在获取前一天的疫情填报详细信息");
+    console.log(dr.address);
+    console.log(dr.area);
+    console.log(dr.province);
+        console.log(dr.city);
+        console.log("************分界线****************");
+
+
+
+
+}
 
 async function getDailyReportFormData(
     client: Got
@@ -116,7 +128,8 @@ async function postDailyReportFormData(
     console.log("正在获取前一天的疫情填报信息");
 
     const formData = await getDailyReportFormData(client);
-
+    
+    
     await sleep(randomBetween(1000, 2000));
 
     console.log("正在提交今日疫情填报信息");
@@ -124,6 +137,8 @@ async function postDailyReportFormData(
     const reportReponse = await postDailyReportFormData(client, formData);
 
     console.log(`今日填报结果：${reportReponse.m}`);
+        printMan(formData);
+
 
     const chatId = process.env["TG_CHAT_ID"];
     const botToken = process.env["TG_BOT_TOKEN"];
